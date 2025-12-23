@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'helvetica-bc';
+    src: url('../font/HelveticaLTStd-BoldCond.otf');
+}
+@font-face {
+    font-family: 'helvetica-lc';
+    src: url('../font/HelveticaLTStd-LightCond.otf');
+}
+@font-face {
+    font-family: 'helvetica-c';
+    src: url('../font/HelveticaLTStd-Cond.otf');
+}
+@font-face {
+    font-family: 'helvetica-th';
+    src: url('../font/HelveticaNeueLTStd-ThCn.otf');
+}
+@font-face {
+    font-family: 'meta-pro';
+    src: url('../font/MetaPro-Black.otf');
+}

@@ -1,0 +1,5 @@
+export const CheckIcon = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" height="30px"  viewBox="0 -960 960 960" width="30px" fill="#e3e3e3"><path d="M400-304 240-464l56-56 104 104 264-264 56 56-320 320Z"/></svg>
+  )
+}

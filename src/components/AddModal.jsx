@@ -1,5 +1,30 @@
-
+import { useState } from "react"
 export const AddModal = ({modal,dmodal}) => {
+    const[nombre ,setNombre]=useState("")
+    const[codigo ,setCodigo]=useState("")
+    const handlerSubmit = async (e)=>{
+        console.log(typeof codigo)
+        e.preventDefault();
+        const elemento = {
+            id_iconos:"10",
+            nombre:nombre,
+            codigo:codigo
+        }
+       try{
+        const respuesta = await fetch(`http://127.0.0.1:8000/api/iconos/`,{
+            method:'POST',
+            headers:{'content-type': 'application/json'},
+            body:JSON.stringify(elemento)
+        });
+        if(!Response.ok){
+            const errorHTTP=Response.error;
+            throw new Error(`existe un error${errorHTTP}`);
+        }
+       }catch(err){
+            console.error(err)
+        }
+    }
+
   return (
 <div className={modal}>
     <div className="absolute inset-0"></div>
@@ -13,18 +38,9 @@ export const AddModal = ({modal,dmodal}) => {
                 <input 
                     type="text" 
                     id="nombre" 
+                    onChange={(e)=>{setNombre(e.target.value)}}
                     className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
                     placeholder="Ingresa el nombre"
-                />
-            </div>
-            
-            <div>
-                <label htmlFor="codigo" className="block text-sm font-medium text-gray-300 mb-1">Código del Componente</label>
-                <input 
-                    type="text" 
-                    id="codigo" 
-                    className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
-                    placeholder="Ingresa el código"
                 />
             </div>
             
@@ -49,6 +65,7 @@ export const AddModal = ({modal,dmodal}) => {
                 <textarea 
                     id="codigoComponente" 
                     rows="5" 
+                    onChange={(e)=>{setCodigo(e.target.value)}}
                     className="w-full px-4 py-2 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" 
                     placeholder="Pega o escribe el código aquí..."
                 ></textarea>
@@ -58,7 +75,7 @@ export const AddModal = ({modal,dmodal}) => {
                 <button onClick={dmodal} type="button" className="px-4 py-2 text-gray-300 bg-gray-700 rounded-lg hover:bg-gray-600 transition-colors">
                     Cancelar
                 </button>
-                <button type="submit" className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors">
+                <button type="submit" className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors" onClick={handlerSubmit}>
                     Guardar
                 </button>
             </div>

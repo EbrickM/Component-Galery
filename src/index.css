@@ -3,12 +3,33 @@
 body{
   background-color: #111111;
 }
-
+ @keyframes waterWave {
+          0% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.2);
+            opacity: 0.5;
+          }
+          100% {
+            transform: scale(1.5);
+            opacity: 0;
+          }
+        }
 .select-item{
 transition: font-size .1s ease-out;
 border-right: 0;
 border-top-right-radius: 0px;
 border-bottom-right-radius: 23px;
+}
+
+.buscador-movile{
+transition: all .5s ease;
+}
+.buscador-movile:focus{
+outline: none;
+box-shadow: 0 0 15px #ebe5e5;
 }
 .buscador{
 transition: all .5s ease;
@@ -16,16 +37,17 @@ transition: all .5s ease;
 .buscador:focus{
 padding-right: 30px;
 padding-left: 30px;
+margin-right: 30px;
 outline: none;
+box-shadow: 0 0 15px #ebe5e5;
 }
-
 @keyframes rotate {
   0%{
     scale: 0;
   }
     100%{
     scale: 1;
-    transform: rotate(360deg);
+    transform: rotate(720deg);
   }
 }
 
@@ -35,19 +57,19 @@ outline: none;
   }
     100%{
     scale: 0;
-    transform: rotate(-360deg);
+    transform: rotate(-720deg);
   }
 }
 
 .element{
-  animation: rotate .7s infinite;
+   transition: all .2s ease-in-out;
+  animation: rotate .9s infinite;
   animation-iteration-count: 1;
 }
 .noelement{
- transition: all .5s ease-in-out;
-  animation:reverserotate.7s infinite;
+ transition: all .2s ease-in-out;
+  animation:reverserotate .9s infinite;
   animation-iteration-count: 1;
-  scale: 0;
 }
 .banner{
   transform: translateX(-200px);
