@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { ComponentCard } from "./ComponentCard";
 import { useMiContexto } from './ContextFather';
-
+import { Skeleton } from "./skeleton";
 export const CompReceptor = () => {
     const { endpoint, fetchingDatos } = useMiContexto();
-    const [lista, setLista] = useState([]); // Inicializar como array vacío
-    const [loading, setLoading] = useState(true); // Estado de carga
+    const [lista, setLista] = useState([]); 
+    const [loading, setLoading] = useState(false); 
     
     useEffect(() => {
         const obtenerLista = async () => {
@@ -17,19 +17,18 @@ export const CompReceptor = () => {
                 console.error("Error al obtener datos:", error);
                 setLista([]);
             } finally {
-                setLoading(false);
+                setTimeout(() => {
+                    setLoading(false)
+                }, 800);
+                
             }
         };
         obtenerLista();
-    }, [endpoint, fetchingDatos]);
-
-    console.log(lista);
-    
+    }, [endpoint, fetchingDatos,]);
 
     if (loading) {
-        return <div>Cargando...</div>;
+        return <Skeleton/>;
     }
-
     return (
         <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:ml-48 p-3">
             {lista && lista.length > 0 ? (

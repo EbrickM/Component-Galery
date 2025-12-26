@@ -19,7 +19,7 @@ export const SelecterButton = ({ clases, onClick }) => {
   };
 
   return (
-    <section className="w-[180px] h-screen hidden md:flex items-center justify-center fixed ">
+    <section className="w-45 h-screen hidden md:flex items-center justify-center fixed ">
       <div className="relative" onClick={handleClick}>
         {/* Contenedor de la onda */}
         <div className={`
@@ -46,3 +46,4 @@ export const SelecterButton = ({ clases, onClick }) => {
     </section>
   );
 };
+
