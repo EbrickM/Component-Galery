@@ -47,7 +47,7 @@ export const AddModal = ({ modal, dmodal }) => {
     }
 
     return (
-        <div className={modal}>
+        <div className={`ml-0 mt-5 ${modal}`}>
             <div className="absolute inset-0 bg-opacity-50" onClick={dmodal}></div>
             
             <div className="bg-[#151515] rounded-xl shadow-2xl p-6 w-full max-w-md mx-4 relative z-10 border border-gray-700">

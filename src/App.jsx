@@ -5,7 +5,7 @@ import { SelecterButton } from './components/SelecterButton.jsx'
 import {SideBar} from './components/SideBar.jsx'
 
 function App() {
-     const activated="fixed inset-0 flex items-center justify-center z-50 ml-[150px]";
+     const activated="fixed inset-0 flex items-center justify-center z-50 md:ml-[150px] md:mt-0";
      const desactivated="hidden";
      const [modal,setModal] = useState (desactivated);
   

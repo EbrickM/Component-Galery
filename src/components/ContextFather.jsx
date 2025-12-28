@@ -36,7 +36,7 @@ export const ContextFather = ({ children }) => {
 
   const [button, setButton] = useState(getInitialButtonState);
   const [clases, setClases] = useState(getInitialState);
-
+    const [refestado, setRefEstado] = useState(true); 
   // Efecto para actualizar cuando cambie el tamaño de la pantalla
   useEffect(() => {
     const handleResize = () => {
@@ -58,11 +58,13 @@ export const ContextFather = ({ children }) => {
   const handlerActivar = () => {
     setClases(activado);
     setButton(element);
+    setRefEstado(true);
   };
   
   const handlerGoBackClick = () => {
     setClases(desactivado);
     setButton(noelement);
+    setRefEstado(false);
   };
 
   const [endpoint ,setEndpoint]=useState("iconos");
@@ -92,7 +94,8 @@ export const ContextFather = ({ children }) => {
       handlerGoBackClick,
       endpoint ,
       setEndpoint,
-      fetchingDatos
+      fetchingDatos,
+      refestado
     }}>
       {children}
     </MiContexto.Provider>
