@@ -3,7 +3,7 @@ import { ComponentCard } from "./ComponentCard";
 import { useMiContexto } from './ContextFather';
 import { Skeleton } from "./skeleton";
 export const CompReceptor = () => {
-    const { endpoint, fetchingDatos } = useMiContexto();
+    const { endpoint, fetchingDatos,} = useMiContexto();
     const [lista, setLista] = useState([]); 
     const [loading, setLoading] = useState(false); 
     
@@ -24,7 +24,7 @@ export const CompReceptor = () => {
             }
         };
         obtenerLista();
-    }, [endpoint, fetchingDatos,]);
+    }, [endpoint, fetchingDatos]);
 
     if (loading) {
         return <Skeleton/>;

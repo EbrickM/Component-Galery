@@ -31,7 +31,7 @@ export const AddModal = ({ modal, dmodal }) => {
                 throw new Error(`Error ${response.status}: ${JSON.stringify(errorData)}`);
             }
             
-            // Limpiar formulario y cerrar modal
+           
             setNombre("");
             setCodigo("");
             dmodal();
@@ -113,7 +113,7 @@ export const AddModal = ({ modal, dmodal }) => {
                     <div className="flex justify-end space-x-3 pt-4">
                         <button 
                             type="submit" 
-                            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors flex items-center justify-center min-w-[80px]"
+                            className="px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 transition-colors flex items-center justify-center min-w-20"
                             disabled={isLoading}
                         >
                             {isLoading ? (
