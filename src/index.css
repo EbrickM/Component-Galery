@@ -90,3 +90,38 @@ box-shadow: 0 0 15px #ebe5e5;
   transition: all .2s ease-out;
   cursor: pointer;
 }
+
+/* Versión más parecida a YouTube */
+.skeleton-shimmer {
+  position: relative;
+  overflow: hidden;
+  background-color: #4b5563; /* gris-600 - más oscuro */
+}
+
+.skeleton-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent 100%
+  );
+  animation: shimmer 1.8s infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}

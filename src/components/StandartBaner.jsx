@@ -1,19 +1,21 @@
 import lupeIcon from '../assets/icons/lupeIcon.svg';
 import '../assets/font/fonts.css'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMiContexto } from './ContextFather';
+import { searching } from './logic/searching';
+import { SearchBanner } from './SearchBanner';
 
 export const StandartBaner = () => {
   const [estadoClose, setEstadoClose] = useState("hidden");
   const [estadoOpen, setEstadoOpen] = useState(""); 
-  
+  const [state, setState] = useState("hidden");
+  const [listaFiltrada, setListaFiltrada] = useState([]); 
   // CORRECCIÓN 1: Invocar el hook correctamente
-  const {handlerActivar, handlerGoBackClick } = useMiContexto();
+  const {handlerActivar, handlerGoBackClick ,refestado,listaGeneral} = useMiContexto();
 
   const handlerEstadoOpen = () => {
     setEstadoClose("");
     setEstadoOpen("hidden");
-    // CORRECCIÓN 2: Ejecutar la función
     handlerGoBackClick();
     
   }
@@ -21,13 +23,22 @@ export const StandartBaner = () => {
   const handlerEstadoClose = () => {
     setEstadoClose("hidden");
     setEstadoOpen("");
-    // CORRECCIÓN 3: Ejecutar la función
     handlerActivar();
   }
+ 
+  useEffect(()=>{
+  if(refestado){
+  setEstadoClose("hidden");
+  setEstadoOpen("");
+  }else {
+  setEstadoClose("");
+  setEstadoOpen("hidden");
+}
+  },[refestado]);
 
   return (
     <>
-    <section className='flex justify-between items-center sm:justify-center w-full h-14 fixed z-[300] bg-black md:bg-transparent'>
+    <section className='flex justify-between items-center sm:justify-center w-full h-14 fixed z-300 bg-black'>
       <div className='sm:hidden'>
         <div className={`${estadoOpen} transition-all duration-200`} onClick={handlerEstadoOpen}>
           <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24">
@@ -50,10 +61,12 @@ export const StandartBaner = () => {
           placeholder='Busca un componente' 
           className='buscador-movile sm:buscador p-2 pr-4 text-[#ebe5e5] placeholder:text-[#ebe5e54a] rounded-4xl border-[#ebe5e5] border-2 fixed text-left ml-16' 
           style={{fontFamily:'helvetica-c'}}
+          onChange={(e)=>{setListaFiltrada(searching(e.target.value,listaGeneral)); if(e.target.value==""||listaFiltrada.length===0){setState("hidden")}else{setState("")}}}
         /> 
-        <img className='object-cover h-[24px] w-auto invert-100 ml-54 mr-1' src={lupeIcon} alt="icon" />
+        <img className='object-cover h-6 w-auto invert-100 ml-54 mr-1' src={lupeIcon} alt="icon" />
       </div>
     </section>
+    <SearchBanner list={listaFiltrada} state={state}/>
     </>
   )
 }
